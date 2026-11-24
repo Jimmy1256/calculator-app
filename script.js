@@ -1,8 +1,6 @@
 let display = document.getElementById('display');
 let currentInput = '0';
 let memoryValue = 0;
-let display = document.getElementById('display');
-let currentInput = '0';
 
 function updateDisplay() {
     display.textContent = currentInput;
@@ -45,7 +43,6 @@ function calculate() {
     }
 }
 
-// 在 script.js 末尾增加
 function calculatePercentage() {
     try {
         currentInput = (eval(currentInput) / 100).toString();
@@ -65,7 +62,6 @@ function memoryAdd() {
         let currentValue = eval(currentInput);
         memoryValue += currentValue;
         console.log('Memory:', memoryValue);
-        // 可選：顯示提示
         showMemoryIndicator();
     } catch (error) {
         console.error('Memory add error:', error);
@@ -94,7 +90,6 @@ function memoryClear() {
     hideMemoryIndicator();
 }
 
-// 可選：顯示記憶指示器
 function showMemoryIndicator() {
     display.style.borderLeft = '5px solid #ff9800';
 }
@@ -103,13 +98,23 @@ function hideMemoryIndicator() {
     display.style.borderLeft = 'none';
 }
 
-// 新增科學計算函數
+// 新增科學計算函數（下拉選單版本）
+function applyScientificOp() {
+    let select = document.getElementById('scientificOp');
+    let operation = select.value;
+
+    if (!operation) return;
+
+    scientificCalc(operation);
+    select.value = '';
+}
+
 function scientificCalc(operation) {
     try {
         let value = eval(currentInput);
         let result;
-        
-        switch(operation) {
+
+        switch (operation) {
             case 'sin':
                 result = Math.sin(value * Math.PI / 180);
                 break;
@@ -131,7 +136,7 @@ function scientificCalc(operation) {
             default:
                 result = value;
         }
-        
+
         currentInput = result.toString();
         updateDisplay();
     } catch (error) {
