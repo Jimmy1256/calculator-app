@@ -1,8 +1,7 @@
 let display = document.getElementById('display');
 let currentInput = '0';
 let memoryValue = 0;
-let display = document.getElementById('display');
-let currentInput = '0';
+
 
 function updateDisplay() {
     display.textContent = currentInput;
@@ -102,9 +101,19 @@ function showMemoryIndicator() {
 function hideMemoryIndicator() {
     display.style.borderLeft = 'none';
 }
+HEAD
+// 新增科學計算函數（下拉選單版本）
+function applyScientificOp() {
+    let select = document.getElementById('scientificOp');
+    let operation = select.value;
+    
+    if (!operation) return;
+    
+
 
 // 新增科學計算函數
 function scientificCalc(operation) {
+ main
     try {
         let value = eval(currentInput);
         let result;
@@ -134,6 +143,11 @@ function scientificCalc(operation) {
         
         currentInput = result.toString();
         updateDisplay();
+HEAD
+        
+        // 重置選單
+        select.value = '';
+main
     } catch (error) {
         currentInput = 'Error';
         updateDisplay();
